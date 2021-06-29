@@ -1,11 +1,12 @@
 {
   "name": "react-custom-roulette",
-  "version": "1.1.8",
+  "version": "2.0.0",
   "description": "Customizable React roulette wheel with spinning animation",
-  "main": "./dist/bundle.js",
+  "main": "./dist/react-custom-roulette.js",
+  "types": "./dist/Wheel.tsx",
   "repository": {
     "type": "git",
-    "url": "https://github.com/effectussoftware/react-custom-roulette"
+    "url": "https://github.com/MankiBusiness/react-custom-roulette"
   },
   "keywords": [
     "react",
@@ -17,69 +18,51 @@
     "prize"
   ],
   "license": "MIT",
-  "types": "./dist/index.d.ts",
   "private": false,
-  "dependencies": {
-    "@types/jest": "^25.2.3",
-    "@types/node": "^14.0.9",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "react-scripts": "^4.0.3"
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^16.13.1||^17",
+    "react-dom": "^16.13.1||^17"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
     "@testing-library/jest-dom": "^5.9.0",
     "@testing-library/react": "^10.0.6",
     "@testing-library/user-event": "^11.0.0",
+    "@types/jest": "^25.2.3",
+    "@types/react": "^17.0.1",
+    "@types/react-dom": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
     "babel-loader": "8.1.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
     "css-loader": "^3.5.3",
     "eslint": "^7.21.0",
     "eslint-config-airbnb-typescript-prettier": "^2.1.1",
     "eslint-plugin-react": "^7.22.0",
     "husky": "^4.2.5",
+    "jest": "^27.0.6",
     "jest-canvas-mock": "^2.2.0",
     "prettier": "^2.0.5",
-    "styled-components": "^5.1.1",
-    "ts-loader": "8.0.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "typescript": "^4.2.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.1.0",
     "webpack": "4.44.2",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "3.11.1"
+    "webpack-dev-server": "3.11.2"
   },
   "scripts": {
-    "start-server": "react-scripts start",
-    "start": "webpack --watch",
-    "build": "webpack && tsc && cp -R ./src/assets ./dist",
-    "test": "react-scripts test",
+    "dev": "tsc -w -p tsconfig.dev.json & webpack-dev-server --config webpack.config.js --mode development --open",
+    "build": "rm -rf dist/* && tsc && NODE_ENV=production webpack --config webpack.build.config.js && cp src/styles.css ./dist && cp -R ./src/assets ./dist && cp src/*.ts* ./dist",
+    "test": "tsc && jest --coverage",
     "coverage": "CI=true npm test -- --env=jsdom --coverage",
-    "eject": "react-scripts eject",
     "format": "prettier --write src/**/*.{js,ts,tsx}",
-    "lint": "eslint src/**/*.{js,ts,tsx}",
-    "link-react": "cd example/node_modules/react && npm link && cd ../react-dom && npm link && cd ../../.. && npm link react react-dom"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn format && yarn lint"
-    }
-  },
-  "jest": {
-    "coveragePathIgnorePatterns": [
-      "src/serviceWorker.ts"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "lint": "eslint src/**/*.{js,ts,tsx}"
   },
   "browserslist": {
     "production": [

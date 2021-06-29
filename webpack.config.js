@@ -1,53 +1,32 @@
-var path = require('path')
+const path = require('path')
+
 module.exports = {
-  mode: 'production',
-  entry: './src/index.tsx',
+  devtool: 'inline-source-map',
+  entry: './examples/src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    library: 'Wheel',
-    libraryTarget: 'umd',
+    path: path.resolve(__dirname, 'examples', 'dist'),
+    publicPath: '/',
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        include: path.resolve(__dirname, 'src'),
-        exclude: /(node_modules|bower_components|dist)/,
-        use: 'ts-loader',
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
       },
       {
-        test: /\.(png|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-            },
-          },
-        ],
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+        exclude: /node_modules/,
+        loader: 'url-loader?limit=10000',
       },
     ],
   },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  externals: {
-    react: {
-      commonjs: 'react',
-      commonjs2: 'react',
-      amd: 'React',
-      root: 'React',
-    },
-    'react-dom': {
-      commonjs: 'react-dom',
-      commonjs2: 'react-dom',
-      amd: 'ReactDOM',
-      root: 'ReactDOM',
-    },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'examples', 'dist'),
   },
 }
