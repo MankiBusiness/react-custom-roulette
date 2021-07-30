@@ -9,6 +9,12 @@
     "strict": true,
     "allowJs": true
   },
-  "include": ["src/*.tsx", "src/*.ts", "tests/*.tsx", "tests/*.ts"],
+  "include": [
+    "src/*.tsx",
+    "src/*.ts",
+    "examples/src/*.tsx",
+    "tests/*.tsx",
+    "tests/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
