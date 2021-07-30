@@ -5,14 +5,14 @@ import '../../src/styles.css';
 import { Wheel } from '../../src/Wheel';
 
 const data = [
-    { option: 'REACT' },
-    { option: 'CUSTOM' },
-    { option: 'ROULETTE', style: { textColor: '#f9dd50' } },
-    { option: 'WHEEL' },
-    { option: 'REACT (2)' },
-    { option: 'CUSTOM (2)' },
-    { option: 'ROULETTE (2)', style: { textColor: '#70bbe0' } },
-    { option: 'WHEEL (2)' },
+    { text: 'REACT', subtext: 'hello' },
+    { text: 'CUSTOM' },
+    { text: 'ROULETTE', style: { textColor: '#f9dd50' } },
+    { text: 'WHEEL' },
+    { text: 'REACT (2)' },
+    { text: 'CUSTOM (2)' },
+    { text: 'ROULETTE (2)', style: { textColor: '#70bbe0' } },
+    { text: 'WHEEL (2)' },
 ];
 
 const backgroundColors = ['#ff8f43', '#70bbe0', '#0b3351', '#f9dd50'];

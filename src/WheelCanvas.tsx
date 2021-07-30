@@ -138,12 +138,20 @@ const drawWheel = (
         centerX + Math.cos(angle + arc / 2) * textRadius,
         centerY + Math.sin(angle + arc / 2) * textRadius
       );
-      const text = data[i].option;
+      const text = data[i].text;
       const textRotationAngle = perpendicularText
         ? angle + arc / 2 + Math.PI / 2
         : angle + arc / 2;
       ctx.rotate(textRotationAngle);
-      ctx.fillText(text, -ctx.measureText(text).width / 2, fontSize / 2.7);
+      ctx.textAlign = 'right';
+      ctx.fillText(text, canvas.width / 7, fontSize / 2.7);
+
+      if (data[i].subtext) {
+        const subtext = data[i].subtext as string;
+        ctx.font = `bold ${fontSize / 1.5}px Helvetica, Arial`;
+        ctx.fillText(subtext, canvas.width / 7, -(fontSize / 2.7) - 10);
+      }
+
       ctx.restore();
     }
   }

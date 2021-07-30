@@ -38,7 +38,8 @@ interface Props {
 }
 
 export interface WheelData {
-  option: string;
+  text: string;
+  subtext?: string;
   style?: StyleType;
 }
 
@@ -83,7 +84,7 @@ export const Wheel = ({
 
   useEffect(() => {
     const dataLength = data.length;
-    const wheelDataAux = [{ option: '' }] as WheelData[];
+    const wheelDataAux = [{ text: '', subtext: '' }] as WheelData[];
     for (let i = 0; i < dataLength; i++) {
       wheelDataAux[i] = {
         ...data[i],
