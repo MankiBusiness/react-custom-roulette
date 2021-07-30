@@ -1,8 +1,8 @@
 {
   "name": "@mankibusiness/react-custom-roulette",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Customizable React roulette wheel with spinning animation",
-  "main": "./dist/react-custom-roulette.js",
+  "main": "./dist/react-custom-roulette.umd.js",
   "types": "./dist/Wheel.tsx",
   "repository": {
     "type": "git",
@@ -21,8 +21,7 @@
   "private": false,
   "dependencies": {},
   "peerDependencies": {
-    "react": "^16.13.1||^17",
-    "react-dom": "^16.13.1||^17"
+    "react": "^16.13.1||^17"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

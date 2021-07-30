@@ -15,7 +15,7 @@ function createConfig(entry, output) {
       minimizer: [new UglifyJSPlugin()],
     },
     externals: {
-      'react': 'React',
+      react: 'react',
     },
     module: {
       rules: [
@@ -43,11 +43,13 @@ module.exports = [
     path: path.resolve('dist'),
     libraryTarget: 'commonjs2',
     filename: 'react-custom-roulette.js',
+    globalObject: 'this',
   }),
   createConfig('./src/Wheel.js', {
     path: path.resolve('dist'),
-    libraryTarget: 'umd',
     filename: 'react-custom-roulette.umd.js',
     library: 'ReactCustomRoulette',
+    libraryTarget: 'umd',
+    globalObject: 'this',
   }),
 ]
