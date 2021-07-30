@@ -169,13 +169,17 @@ export const Wheel = ({
         alt="roulette-static"
       />
       <style>{`
+        .rcr-rotation-container {
+          transform: rotate(${startRotationDegrees}deg);
+        }
+
         .rcr-rotation-container.rcr-started-spinning {
           animation: 
             rcr-spin ${START_SPINNING_TIME / 1000}s
               cubic-bezier(0.71, -0.29, 0.96, 0.9) 0s 1 normal forwards running,
             rcr-continue-spin 0.75s linear
-              ${START_SPINNING_TIME / 1000}s 1 normal
-              forwards running,
+              ${START_SPINNING_TIME / 1000}s 
+              1 normal forwards running,
             rcr-stop-spin ${STOP_SPINNING_TIME / 1000}s
               cubic-bezier(0, 0, 0.35, 1.02)
               ${(START_SPINNING_TIME + CONTINUE_SPINNING_TIME) / 1000}s
@@ -203,7 +207,7 @@ export const Wheel = ({
             transform: rotate(${startRotationDegrees}deg);
           }
           to {
-            transform: rotate(${finalRotationDegrees}deg);
+            transform: rotate(${1440 + finalRotationDegrees}deg);
           }
         }
       `}</style>
