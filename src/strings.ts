@@ -1,3 +1,5 @@
+export const DEFAULT_WIDTH = '500px';
+export const DEFAULT_HEIGHT = '500px';
 export const DEFAULT_BACKGROUND_COLORS = ['darkgrey', 'lightgrey'];
 export const DEFAULT_TEXT_COLORS = ['black'];
 export const DEFAULT_OUTER_BORDER_COLOR = 'black';

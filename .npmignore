@@ -1,5 +1,11 @@
 demo
-example
+examples
 src
 tests
 coverage
+tsconfig.json
+webpack*.config.js
+.babelrc
+.env
+.eslintrc
+.prettierrc.js

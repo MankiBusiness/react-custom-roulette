@@ -39,11 +39,13 @@ const App = () => {
 
     return (
         <div className="App">
-            <header className="App-header">
+            <header className="App-header" style={{ width: '600px', height: '600px' }}>
                 <Wheel
                     mustStartSpinning={mustSpin}
                     prizeNumber={prizeNumber}
                     data={data}
+                    width="100%"
+                    height="100%"
                     backgroundColors={backgroundColors}
                     textColors={textColors}
                     fontSize={fontSize}

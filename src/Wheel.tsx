@@ -3,6 +3,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import WheelCanvas from './WheelCanvas';
 import { getRotationDegrees } from './utils';
 import {
+  DEFAULT_WIDTH,
+  DEFAULT_HEIGHT,
   DEFAULT_BACKGROUND_COLORS,
   DEFAULT_TEXT_COLORS,
   DEFAULT_OUTER_BORDER_COLOR,
@@ -15,7 +17,6 @@ import {
   DEFAULT_FONT_SIZE,
   DEFAULT_TEXT_DISTANCE,
 } from './strings';
-// @ts-ignore
 import rouletteSelectorImage from './assets/roulette-selector.png';
 
 interface Props {
@@ -23,6 +24,9 @@ interface Props {
   prizeNumber: number;
   data: WheelData[];
   onStopSpinning?: () => any;
+  width?: string;
+  height?: string;
+  customSelectorImage?: string;
   backgroundColors?: string[];
   textColors?: string[];
   outerBorderColor?: string;
@@ -59,6 +63,9 @@ export const Wheel = ({
   prizeNumber,
   data,
   onStopSpinning = () => null,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
+  customSelectorImage = null,
   backgroundColors = DEFAULT_BACKGROUND_COLORS,
   textColors = DEFAULT_TEXT_COLORS,
   outerBorderColor = DEFAULT_OUTER_BORDER_COLOR,
@@ -146,29 +153,29 @@ export const Wheel = ({
   }
 
   return (
-    <div className="rcr-roulette-container">
-      <div className={`rcr-rotation-container ${getRouletteClass()}`}>
-        <WheelCanvas
-          width="900"
-          height="900"
-          data={wheelData}
-          outerBorderColor={outerBorderColor}
-          outerBorderWidth={outerBorderWidth}
-          innerRadius={innerRadius}
-          innerBorderColor={innerBorderColor}
-          innerBorderWidth={innerBorderWidth}
-          radiusLineColor={radiusLineColor}
-          radiusLineWidth={radiusLineWidth}
-          fontSize={fontSize}
-          perpendicularText={perpendicularText}
-          textDistance={textDistance}
+    <div className="rcr-roulette-container" style={{ width, height }}>
+      <div className="rcr-aspect-container">
+        <div className={['rcr-rotation-container', getRouletteClass()].join(' ')}>
+          <WheelCanvas
+            data={wheelData}
+            outerBorderColor={outerBorderColor}
+            outerBorderWidth={outerBorderWidth}
+            innerRadius={innerRadius}
+            innerBorderColor={innerBorderColor}
+            innerBorderWidth={innerBorderWidth}
+            radiusLineColor={radiusLineColor}
+            radiusLineWidth={radiusLineWidth}
+            fontSize={fontSize}
+            perpendicularText={perpendicularText}
+            textDistance={textDistance}
+          />
+        </div>
+        <img
+          className="rcr-roulette-selector-image"
+          src={customSelectorImage || rouletteSelectorImage}
+          alt="roulette-static"
         />
       </div>
-      <img
-        className="rcr-roulette-selector-image"
-        src={rouletteSelectorImage}
-        alt="roulette-static"
-      />
       <style>{`
         .rcr-rotation-container {
           transform: rotate(${startRotationDegrees}deg);

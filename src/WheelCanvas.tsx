@@ -4,8 +4,6 @@ import { WheelData } from './Wheel';
 import { clamp } from './utils';
 
 interface WheelCanvasProps extends DrawWheelProps {
-  width: string;
-  height: string;
   data: WheelData[];
 }
 
@@ -51,7 +49,7 @@ const drawWheel = (
   const canvas = canvasRef.current;
   if (canvas?.getContext('2d')) {
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-    ctx.clearRect(0, 0, 500, 500);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = 'transparent';
     ctx.lineWidth = 0;
     // ctx.translate(0.5, 0.5)
@@ -158,8 +156,6 @@ const drawWheel = (
 };
 
 const WheelCanvas = ({
-  width,
-  height,
   data,
   outerBorderColor,
   outerBorderWidth,
@@ -194,8 +190,8 @@ const WheelCanvas = ({
     <canvas
       className="rcr-canvas"
       ref={canvasRef}
-      width={width}
-      height={height}
+      width="900"
+      height="900"
     />
   );
 };
