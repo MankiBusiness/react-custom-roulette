@@ -14,6 +14,9 @@ function createConfig(entry, output) {
     optimization: {
       minimizer: [new UglifyJSPlugin()],
     },
+    externals: {
+      'react': 'React',
+    },
     module: {
       rules: [
         {
