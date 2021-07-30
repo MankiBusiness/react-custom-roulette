@@ -17,6 +17,7 @@ import {
   DEFAULT_FONT_SIZE,
   DEFAULT_TEXT_DISTANCE,
 } from './strings';
+// @ts-ignore
 import rouletteSelectorImage from './assets/roulette-selector.png';
 
 interface Props {
@@ -65,7 +66,7 @@ export const Wheel = ({
   onStopSpinning = () => null,
   width = DEFAULT_WIDTH,
   height = DEFAULT_HEIGHT,
-  customSelectorImage = null,
+  customSelectorImage = '',
   backgroundColors = DEFAULT_BACKGROUND_COLORS,
   textColors = DEFAULT_TEXT_COLORS,
   outerBorderColor = DEFAULT_OUTER_BORDER_COLOR,
