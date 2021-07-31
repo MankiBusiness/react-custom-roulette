@@ -10,4 +10,6 @@ export const DEFAULT_INNER_BORDER_WIDTH = 0;
 export const DEFAULT_RADIUS_LINE_COLOR = 'black';
 export const DEFAULT_RADIUS_LINE_WIDTH = 5;
 export const DEFAULT_FONT_SIZE = 20;
+export const DEFAULT_FONT_FAMILY = 'Helvetica, Arial';
 export const DEFAULT_TEXT_DISTANCE = 60;
+export const DEFAULT_INITIAL_ROTATION = 45;

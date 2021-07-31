@@ -1,16 +1,17 @@
 export const getRotationDegrees = (
   prizeNumber: number,
-  numberOfPrizes: number
+  numberOfPrizes: number,
+  initialRotation: number
 ) => {
   const degreesPerPrize = 360 / numberOfPrizes;
 
-  const initialRotation = 43 + degreesPerPrize / 2;
+  const initialCenteredRotation = initialRotation + degreesPerPrize / 2;
 
   const randomDifference = (-1 + Math.random() * 2) * degreesPerPrize * 0.35;
 
   const prizeRotation =
     degreesPerPrize * (numberOfPrizes - prizeNumber) -
-    initialRotation +
+    initialCenteredRotation +
     randomDifference;
 
   return numberOfPrizes - prizeNumber > numberOfPrizes / 2

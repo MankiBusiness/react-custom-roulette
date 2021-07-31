@@ -15,7 +15,9 @@ import {
   DEFAULT_RADIUS_LINE_COLOR,
   DEFAULT_RADIUS_LINE_WIDTH,
   DEFAULT_FONT_SIZE,
+  DEFAULT_FONT_FAMILY,
   DEFAULT_TEXT_DISTANCE,
+  DEFAULT_INITIAL_ROTATION,
 } from './strings';
 // @ts-ignore
 import rouletteSelectorImage from './assets/roulette-selector.png';
@@ -24,6 +26,7 @@ interface Props {
   mustStartSpinning: boolean;
   prizeNumber: number;
   data: WheelData[];
+  initialRotation?: number,
   onStopSpinning?: () => any;
   width?: string;
   height?: string;
@@ -38,6 +41,7 @@ interface Props {
   radiusLineColor?: string;
   radiusLineWidth?: number;
   fontSize?: number;
+  fontFamily?: string;
   perpendicularText?: boolean;
   textDistance?: number;
 }
@@ -51,6 +55,7 @@ export interface WheelData {
 export interface StyleType {
   backgroundColor?: string;
   textColor?: string;
+  subtextColor?: string;
 }
 
 const STARTED_SPINNING = 'rcr-started-spinning';
@@ -64,6 +69,7 @@ export const Wheel = ({
   prizeNumber,
   data,
   onStopSpinning = () => null,
+  initialRotation = DEFAULT_INITIAL_ROTATION,
   width = DEFAULT_WIDTH,
   height = DEFAULT_HEIGHT,
   customSelectorImage = '',
@@ -77,6 +83,7 @@ export const Wheel = ({
   radiusLineColor = DEFAULT_RADIUS_LINE_COLOR,
   radiusLineWidth = DEFAULT_RADIUS_LINE_WIDTH,
   fontSize = DEFAULT_FONT_SIZE,
+  fontFamily = DEFAULT_FONT_FAMILY,
   perpendicularText = false,
   textDistance = DEFAULT_TEXT_DISTANCE,
 }: Props) => {
@@ -102,6 +109,10 @@ export const Wheel = ({
             backgroundColors[i % backgroundColors.length],
           textColor:
             data[i].style?.textColor || textColors[i % textColors.length],
+          subtextColor:
+            data[i].style?.subtextColor ||
+            data[i].style?.textColor ||
+            textColors[i % textColors.length],
         },
       };
     }
@@ -115,7 +126,8 @@ export const Wheel = ({
       startSpinning();
       const finalRotationDegreesCalculated = getRotationDegrees(
         prizeNumber,
-        data.length
+        data.length,
+        initialRotation
       );
       setFinalRotationDegrees(finalRotationDegreesCalculated);
     }
@@ -159,6 +171,7 @@ export const Wheel = ({
         <div className={['rcr-rotation-container', getRouletteClass()].join(' ')}>
           <WheelCanvas
             data={wheelData}
+            initialRotation={initialRotation}
             outerBorderColor={outerBorderColor}
             outerBorderWidth={outerBorderWidth}
             innerRadius={innerRadius}
@@ -167,6 +180,7 @@ export const Wheel = ({
             radiusLineColor={radiusLineColor}
             radiusLineWidth={radiusLineWidth}
             fontSize={fontSize}
+            fontFamily={fontFamily}
             perpendicularText={perpendicularText}
             textDistance={textDistance}
           />

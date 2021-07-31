@@ -8,6 +8,7 @@ interface WheelCanvasProps extends DrawWheelProps {
 }
 
 interface DrawWheelProps {
+  initialRotation: number;
   outerBorderColor: string;
   outerBorderWidth: number;
   innerRadius: number;
@@ -16,6 +17,7 @@ interface DrawWheelProps {
   radiusLineColor: string;
   radiusLineWidth: number;
   fontSize: number;
+  fontFamily: string;
   perpendicularText: boolean;
   textDistance: number;
 }
@@ -28,6 +30,7 @@ const drawWheel = (
   const QUANTITY = data.length;
   /* eslint-disable prefer-const */
   let {
+    initialRotation,
     outerBorderColor,
     outerBorderWidth,
     innerRadius,
@@ -36,6 +39,7 @@ const drawWheel = (
     radiusLineColor,
     radiusLineWidth,
     fontSize,
+    fontFamily,
     perpendicularText,
     textDistance,
   } = drawWheelProps;
@@ -55,7 +59,7 @@ const drawWheel = (
     // ctx.translate(0.5, 0.5)
 
     const arc = Math.PI / (QUANTITY / 2);
-    const startAngle = 0;
+    const startAngle = (initialRotation - 45) * (Math.PI / 180);
     const outsideRadius = canvas.width / 2 - 10;
 
     const clampedTextDistance = clamp(0, 100, textDistance);
@@ -67,7 +71,7 @@ const drawWheel = (
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
 
-    ctx.font = `bold ${fontSize}px Helvetica, Arial`;
+    ctx.font = `bold ${fontSize}px ${fontFamily}`;
 
     for (let i = 0; i < data.length; i++) {
       const angle = startAngle + i * arc;
@@ -146,7 +150,8 @@ const drawWheel = (
 
       if (data[i].subtext) {
         const subtext = data[i].subtext as string;
-        ctx.font = `bold ${fontSize / 1.5}px Helvetica, Arial`;
+        ctx.fillStyle = (style && style.subtextColor) as string;
+        ctx.font = `bold ${fontSize / 1.5}px ${fontFamily}`;
         ctx.fillText(subtext, canvas.width / 7, -(fontSize / 2.7) - 10);
       }
 
@@ -157,6 +162,7 @@ const drawWheel = (
 
 const WheelCanvas = ({
   data,
+  initialRotation,
   outerBorderColor,
   outerBorderWidth,
   innerRadius,
@@ -165,11 +171,13 @@ const WheelCanvas = ({
   radiusLineColor,
   radiusLineWidth,
   fontSize,
+  fontFamily,
   perpendicularText,
   textDistance,
 }: WheelCanvasProps) => {
   const canvasRef = createRef<HTMLCanvasElement>();
   const drawWheelProps = {
+    initialRotation,
     outerBorderColor,
     outerBorderWidth,
     innerRadius,
@@ -178,6 +186,7 @@ const WheelCanvas = ({
     radiusLineColor,
     radiusLineWidth,
     fontSize,
+    fontFamily,
     perpendicularText,
     textDistance,
   };
