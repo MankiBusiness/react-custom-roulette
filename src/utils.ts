@@ -8,11 +8,11 @@ export const getRotationDegrees = (
   const cursorRotationOffset = cursorOffset + degreesPerPrize / 2;
 
   const prizeRotation =
-    degreesPerPrize * (numberOfPrizes - prizeNumber)
+    degreesPerPrize * (numberOfPrizes - prizeNumber) -
     // If cursor is offset from top-center, add offset to align with cursor
-    - cursorRotationOffset
+    cursorRotationOffset +
     // Stop in ceter of choice
-    + (degreesPerPrize / 2);
+    degreesPerPrize / 2;
 
   return numberOfPrizes - prizeNumber > numberOfPrizes / 2
     ? -360 + prizeRotation

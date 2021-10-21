@@ -196,12 +196,7 @@ const WheelCanvas = ({
   }, [canvasRef, data, drawWheelProps]);
 
   return (
-    <canvas
-      className="rcr-canvas"
-      ref={canvasRef}
-      width="900"
-      height="900"
-    />
+    <canvas className="rcr-canvas" ref={canvasRef} width="900" height="900" />
   );
 };
 

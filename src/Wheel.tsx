@@ -27,8 +27,8 @@ interface Props {
   mustStartSpinning: boolean;
   prizeNumber: number;
   data: WheelData[];
-  initialRotation?: number,
-  cursorOffset?: number,
+  initialRotation?: number;
+  cursorOffset?: number;
   onStopSpinning?: () => any;
   width?: string;
   height?: string;
@@ -171,7 +171,9 @@ export const Wheel = ({
   return (
     <div className="rcr-roulette-container" style={{ width, height }}>
       <div className="rcr-aspect-container">
-        <div className={['rcr-rotation-container', getRouletteClass()].join(' ')}>
+        <div
+          className={['rcr-rotation-container', getRouletteClass()].join(' ')}
+        >
           <WheelCanvas
             data={wheelData}
             initialRotation={initialRotation}
