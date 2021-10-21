@@ -18,6 +18,7 @@ import {
   DEFAULT_FONT_FAMILY,
   DEFAULT_TEXT_DISTANCE,
   DEFAULT_INITIAL_ROTATION,
+  DEFAULT_CURSOR_OFFSET,
 } from './strings';
 // @ts-ignore
 import rouletteSelectorImage from './assets/roulette-selector.png';
@@ -27,6 +28,7 @@ interface Props {
   prizeNumber: number;
   data: WheelData[];
   initialRotation?: number,
+  cursorOffset?: number,
   onStopSpinning?: () => any;
   width?: string;
   height?: string;
@@ -70,6 +72,7 @@ export const Wheel = ({
   data,
   onStopSpinning = () => null,
   initialRotation = DEFAULT_INITIAL_ROTATION,
+  cursorOffset = DEFAULT_CURSOR_OFFSET,
   width = DEFAULT_WIDTH,
   height = DEFAULT_HEIGHT,
   customSelectorImage = '',
@@ -127,7 +130,7 @@ export const Wheel = ({
       const finalRotationDegreesCalculated = getRotationDegrees(
         prizeNumber,
         data.length,
-        initialRotation
+        cursorOffset
       );
       setFinalRotationDegrees(finalRotationDegreesCalculated);
     }

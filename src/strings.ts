@@ -13,3 +13,4 @@ export const DEFAULT_FONT_SIZE = 20;
 export const DEFAULT_FONT_FAMILY = 'Helvetica, Arial';
 export const DEFAULT_TEXT_DISTANCE = 60;
 export const DEFAULT_INITIAL_ROTATION = 45;
+export const DEFAULT_CURSOR_OFFSET = 43;

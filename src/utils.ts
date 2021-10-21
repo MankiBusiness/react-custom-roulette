@@ -1,18 +1,18 @@
 export const getRotationDegrees = (
   prizeNumber: number,
   numberOfPrizes: number,
-  initialRotation: number
+  cursorOffset: number
 ) => {
   const degreesPerPrize = 360 / numberOfPrizes;
 
-  const initialCenteredRotation = initialRotation + degreesPerPrize / 2;
-
-  const randomDifference = (-1 + Math.random() * 2) * degreesPerPrize * 0.35;
+  const cursorRotationOffset = cursorOffset + degreesPerPrize / 2;
 
   const prizeRotation =
-    degreesPerPrize * (numberOfPrizes - prizeNumber) -
-    initialCenteredRotation +
-    randomDifference;
+    degreesPerPrize * (numberOfPrizes - prizeNumber)
+    // If cursor is offset from top-center, add offset to align with cursor
+    - cursorRotationOffset
+    // Stop in ceter of choice
+    + (degreesPerPrize / 2);
 
   return numberOfPrizes - prizeNumber > numberOfPrizes / 2
     ? -360 + prizeRotation
