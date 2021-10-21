@@ -62,9 +62,9 @@ export interface StyleType {
 
 const STARTED_SPINNING = 'rcr-started-spinning';
 
-const START_SPINNING_TIME = 2600;
-const CONTINUE_SPINNING_TIME = 750;
-const STOP_SPINNING_TIME = 8000;
+const START_SPINNING_TIME = 1400;
+const CONTINUE_SPINNING_TIME = 1250;
+const STOP_SPINNING_TIME = 4000;
 
 export const Wheel = ({
   mustStartSpinning,
@@ -201,26 +201,15 @@ export const Wheel = ({
 
         .rcr-rotation-container.rcr-started-spinning {
           animation: 
-            rcr-spin ${START_SPINNING_TIME / 1000}s
+            rcr-spin ${(START_SPINNING_TIME + CONTINUE_SPINNING_TIME) / 1000}s
               cubic-bezier(0.71, -0.29, 0.96, 0.9) 0s 1 normal forwards running,
-            rcr-continue-spin 0.75s linear
-              ${START_SPINNING_TIME / 1000}s 
-              1 normal forwards running,
             rcr-stop-spin ${STOP_SPINNING_TIME / 1000}s
-              cubic-bezier(0, 0, 0.35, 1.02)
+              cubic-bezier(.4, .42, .02, 1.03)
               ${(START_SPINNING_TIME + CONTINUE_SPINNING_TIME) / 1000}s
               1 normal forwards running;
         }
       
         @keyframes rcr-spin {
-          from {
-            transform: rotate(${startRotationDegrees}deg);
-          }
-          to {
-            transform: rotate(${startRotationDegrees + 360}deg);
-          }
-        }
-        @keyframes rcr-continue-spin {
           from {
             transform: rotate(${startRotationDegrees}deg);
           }
