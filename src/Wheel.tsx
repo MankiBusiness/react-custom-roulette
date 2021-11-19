@@ -46,6 +46,7 @@ interface Props {
   fontFamily?: string;
   perpendicularText?: boolean;
   textDistance?: number;
+  textWrapDistance?: number;
 }
 
 export interface WheelData {
@@ -89,6 +90,7 @@ export const Wheel = ({
   fontFamily = DEFAULT_FONT_FAMILY,
   perpendicularText = false,
   textDistance = DEFAULT_TEXT_DISTANCE,
+  textWrapDistance,
 }: Props) => {
   const [wheelData, setWheelData] = useState<WheelData[]>([...data]);
   const [startRotationDegrees, setStartRotationDegrees] = useState(0);
@@ -188,6 +190,7 @@ export const Wheel = ({
             fontFamily={fontFamily}
             perpendicularText={perpendicularText}
             textDistance={textDistance}
+            textWrapDistance={textWrapDistance}
           />
         </div>
         <img

@@ -1,6 +1,6 @@
 {
   "name": "@mankibusiness/react-custom-roulette",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "Customizable React roulette wheel with spinning animation",
   "main": "./dist/react-custom-roulette.umd.js",
   "types": "./dist/Wheel.tsx",

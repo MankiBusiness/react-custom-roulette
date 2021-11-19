@@ -20,6 +20,7 @@ interface DrawWheelProps {
   fontFamily: string;
   perpendicularText: boolean;
   textDistance: number;
+  textWrapDistance?: number;
 }
 
 const drawWheel = (
@@ -42,6 +43,7 @@ const drawWheel = (
     fontFamily,
     perpendicularText,
     textDistance,
+    textWrapDistance,
   } = drawWheelProps;
   /* eslint-enable prefer-const */
 
@@ -136,10 +138,16 @@ const drawWheel = (
 
       // TEXT FILL
       const text = data[i].text;
-      const lines = getTextAsLines(ctx, text, centerX * .65);
+      const lines = getTextAsLines(
+        ctx,
+        text,
+        textWrapDistance || centerX * 0.6
+      );
+      const textOffset =
+        (lines.length - 1) * -0.1 + (!!data[i].subtext ? 1 : 0) * 0.05;
       ctx.translate(
-        centerX + Math.cos(angle + arc / 2) * textRadius,
-        centerY + Math.sin(angle + arc / 2) * textRadius
+        centerX + Math.cos(angle + (arc + textOffset) / 2) * textRadius,
+        centerY + Math.sin(angle + (arc + textOffset) / 2) * textRadius
       );
 
       const textRotationAngle = perpendicularText
@@ -149,9 +157,9 @@ const drawWheel = (
 
       ctx.fillStyle = (style && style.textColor) as string;
       ctx.textAlign = 'right';
-      
+
       for (let i = 0; i < lines.length; i++) {
-        ctx.fillText(lines[i], canvas.width / 7, fontSize / 2.7 + (i * fontSize));
+        ctx.fillText(lines[i], canvas.width / 7, fontSize / 2.7 + i * fontSize);
       }
 
       if (data[i].subtext) {
@@ -180,6 +188,7 @@ const WheelCanvas = ({
   fontFamily,
   perpendicularText,
   textDistance,
+  textWrapDistance,
 }: WheelCanvasProps) => {
   const canvasRef = createRef<HTMLCanvasElement>();
   const drawWheelProps = {
@@ -195,6 +204,7 @@ const WheelCanvas = ({
     fontFamily,
     perpendicularText,
     textDistance,
+    textWrapDistance,
   };
 
   useEffect(() => {
