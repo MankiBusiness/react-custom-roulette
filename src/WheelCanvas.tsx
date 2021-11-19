@@ -135,18 +135,21 @@ const drawWheel = (
       ctx.stroke();
 
       // TEXT FILL
-      ctx.fillStyle = (style && style.textColor) as string;
+      const text = data[i].text;
+      const lines = getTextAsLines(ctx, text, centerX * .65);
       ctx.translate(
         centerX + Math.cos(angle + arc / 2) * textRadius,
         centerY + Math.sin(angle + arc / 2) * textRadius
       );
-      const text = data[i].text;
+
       const textRotationAngle = perpendicularText
         ? angle + arc / 2 + Math.PI / 2
         : angle + arc / 2;
       ctx.rotate(textRotationAngle);
+
+      ctx.fillStyle = (style && style.textColor) as string;
       ctx.textAlign = 'right';
-      const lines = getTextAsLines(ctx, text, centerX * .75);
+      
       for (let i = 0; i < lines.length; i++) {
         ctx.fillText(lines[i], canvas.width / 7, fontSize / 2.7 + (i * fontSize));
       }
