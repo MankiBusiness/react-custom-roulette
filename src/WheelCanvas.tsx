@@ -1,7 +1,7 @@
 import React, { RefObject, createRef, useEffect } from 'react';
 
 import { WheelData } from './Wheel';
-import { clamp } from './utils';
+import { clamp, getTextAsLines } from './utils';
 
 interface WheelCanvasProps extends DrawWheelProps {
   data: WheelData[];
@@ -146,7 +146,10 @@ const drawWheel = (
         : angle + arc / 2;
       ctx.rotate(textRotationAngle);
       ctx.textAlign = 'right';
-      ctx.fillText(text, canvas.width / 7, fontSize / 2.7);
+      const lines = getTextAsLines(ctx, text, centerX * .75);
+      for (let i = 0; i < lines.length; i++) {
+        ctx.fillText(lines[i], canvas.width / 7, fontSize / 2.7 + (i * fontSize));
+      }
 
       if (data[i].subtext) {
         const subtext = data[i].subtext as string;
